@@ -1,0 +1,33 @@
+---
+    - name: SpringBoot | Install Git
+      apt:
+        name: git
+        state: present
+        update_cache: yes
+
+    - name: SpringBoot | Clone the spring boot demo repository
+      git:
+        repo: 'https://github.com/grafana/spring-boot-demo.git'
+        dest: /opt/spring-boot-demo
+        version: main
+
+    - name: SpringBoot | Update apt package list
+      apt:
+        update_cache: yes
+        
+    - name: SpringBoot | Install Java Development Kit (JDK)
+      apt:
+        name: openjdk-11-jdk
+        state: present
+
+    - name: SpringBoot | Install Gradle
+      apt:
+        name: gradle
+        state: present
+
+    - name: SpringBoot | Run the Spring Boot application using Gradle in the background
+      shell: nohup ./gradlew :bootRun > /opt/spring-boot-demo/spring-boot.log 2>&1 &
+      args:
+        chdir: /opt/spring-boot-demo
+
+

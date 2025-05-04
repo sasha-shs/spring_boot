@@ -1,0 +1,11 @@
+---
+- name: Converge
+  become: no
+  hosts: all
+  gather_facts: false
+  
+  tasks:
+    - name: spring_boot role
+      include_role:
+        name: spring_boot
+
