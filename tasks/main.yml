@@ -26,7 +26,7 @@
         state: present
 
     - name: SpringBoot | Run the Spring Boot application using Gradle in the background
-      shell: nohup ./gradlew :bootRun > /opt/spring-boot-demo/spring-boot.log 2>&1 &
+      shell: nohup ./gradlew :bootRun > {{ springboot_log_path }} 2>&1 &
       args:
         chdir: /opt/spring-boot-demo
 
